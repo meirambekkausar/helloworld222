@@ -5,7 +5,7 @@ import platform.entity.Course;
 
 import java.sql.*;
 
-public class CourseRepository {
+public class   CourseRepository {
 
     public Course findById(int id) throws SQLException {
         String sql = "select * from courses where id = ?";
