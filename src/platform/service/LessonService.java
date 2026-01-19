@@ -21,4 +21,8 @@ public class LessonService {
 
         return lesson;
     }
+
+    public Lesson createLesson(Long courseId, String title) throws Exception {
+        return lessonRepo.save(courseId, title);
+    }
 }

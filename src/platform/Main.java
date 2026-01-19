@@ -1,25 +1,28 @@
 package platform;
 
+import platform.entity.Course;
+import platform.entity.User;
+import platform.entity.Lesson;
 import platform.service.*;
 
-public class Main {
+        public class Main {
+            public static void main(String[] args) throws Exception {
 
-    public static void main(String[] args) throws Exception {
+                UserService userService = new UserService();
+                CourseService courseService = new CourseService();
+                LessonService lessonService = new LessonService();
 
-        CourseService courseService = new CourseService();
-        LessonService lessonService = new LessonService();
-        ProgressService progressService = new ProgressService();
+                // 1️⃣ Create user
+                User user = userService.createUser("Bob", "bobfsd@mail.com");
+                System.out.println("User created: " + user.getId());
 
-        courseService.enroll(1, 1);
-        courseService.enroll(1, 2);
-        lessonService.openLesson(1, 1);
-        lessonService.openLesson(1, 2);
-        lessonService.openLesson(1, 3);
-        lessonService.openLesson(1, 4);
-        progressService.markCompleted(1, 2);
-        progressService.markCompleted(1, 3);
+                // 2️⃣ Create course
+                Course course = courseService.createCourse("OOP in Java");
+                System.out.println("Course created: " + course.getId());
 
-        double progress = progressService.getProgress(1, 1);
-        System.out.println("Course progress: " + progress + "%");
-    }
-}
+                // 3️⃣ Create lesson
+                Lesson lesson = lessonService.createLesson((long) course.getId(), "Classes and Objects");
+                System.out.println("Lesson created: " + lesson.getId());
+            }
+        }
+

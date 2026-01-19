@@ -40,4 +40,27 @@ public class LessonRepository {
             return rs.getInt(1);
         }
     }
+    public Lesson save(Long courseId, String title) throws SQLException {
+        String sql = """
+            INSERT INTO lessons(course_id, title)
+            VALUES (?, ?)
+            RETURNING id;
+        """;
+
+        try (Connection c = DatabaseConfig.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+
+            ps.setLong(1, courseId);
+            ps.setString(2, title);
+
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+
+            return new Lesson(
+                    rs.getLong("id"),
+                    courseId,
+                    title
+            );
+        }
+    }
 }

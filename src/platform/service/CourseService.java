@@ -19,4 +19,8 @@ public class CourseService {
 
         enrollRepo.save(userId, courseId);
     }
+    public Course createCourse(String title) throws Exception {
+        return courseRepo.save(title);
+    }
+
 }

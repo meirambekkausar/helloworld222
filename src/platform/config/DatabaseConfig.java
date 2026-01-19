@@ -5,8 +5,8 @@ import java.sql.SQLException;
 public class DatabaseConfig {
     private static final String URL =
             "jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:5432/postgres?sslmode=require";
-    private static final String USER = "postgres.BLALBLABLABLELBLEBLUBLUBLU";
-    private static final String PASSWORD = "JULLINGHAM";  // ← DATABASE PASSWORD
+    private static final String USER = "postgres.eblswscbdczprhchtdpx";
+    private static final String PASSWORD = "KLrwZ3Sv4XNzIErR";  // ← DATABASE PASSWORD
     private DatabaseConfig() {
 // no instances
     }
