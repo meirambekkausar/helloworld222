@@ -28,6 +28,7 @@ public class Main {
                     4. Open lesson
                     5. Mark lesson completed
                     6. Show course progress
+                    7. Show all courses
                     0. Exit
                     """);
             int choice = cin.nextInt();
@@ -35,12 +36,11 @@ public class Main {
         switch (choice) {
             case 1 -> {
                 System.out.print("Course title: ");
-                cin.nextLine();
+                //  cin.nextLine();
                 String title = cin.nextLine();
                 Course fg = courseRepo.save(title);
                 System.out.println("Course created successfully, ID: " + fg.getId());
             }
-
             case 2 -> {
                 System.out.print("Course ID: ");
                 Long courseId = cin.nextLong();
@@ -51,7 +51,6 @@ public class Main {
                 lessonRepo.save(courseId, lessonTitle);
                 System.out.println("Lesson created");
             }
-
             case 3 -> {
                 System.out.print("User ID: ");
                 Long userId = cin.nextLong();
@@ -60,7 +59,6 @@ public class Main {
                 courseService.enroll(Math.toIntExact(userId), Math.toIntExact(courseId));
                 System.out.println("User enrolled");
             }
-
             case 4 -> {
                 System.out.print("User ID: ");
                 Long userId = cin.nextLong();
@@ -69,7 +67,6 @@ public class Main {
                 lessonService.openLesson(userId, lessonId);
                 System.out.println("Lesson opened");
             }
-
             case 5 -> {
                 System.out.print("User ID: ");
                 Long userId = cin.nextLong();
@@ -78,7 +75,6 @@ public class Main {
                 progressService.markCompleted(Math.toIntExact(userId), Math.toIntExact(lessonId));
                 System.out.println("Lesson marked as completed");
             }
-
             case 6 -> {
                 System.out.print("User ID: ");
                 Long userId = cin.nextLong();
@@ -89,11 +85,17 @@ public class Main {
 
                 System.out.println("Course progress: " + gh + "%");
             }
+            case 7 -> {
+                System.out.println("All courses:");
+                for (Course c : courseService.listAllCourses()) {
+                    System.out.println(c.getId() + " | " + c.getTitle());
+                }
+            }
             case 0 -> {
                 System.out.println("Goodbye!");
                 System.exit(0);
+                break;
             }
-
             default -> System.out.println("Invalid option");
         }
         }
